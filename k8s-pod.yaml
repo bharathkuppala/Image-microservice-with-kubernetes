@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod # What type of kubernetes resource we are using
+metadata: #name of the pod
+  name: image-microservice
+  labels:
+    name: image-microservice
+    language: go
+    env: dev
+spec: #blueprint of what's should run inside container, limitations and behaviour
+  containers:
+  - name: image-microservice
+    imagePullPolicy: Never
+    image: image-microservice:1.0.0
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 9098
+        protocol: TCP
+      
+

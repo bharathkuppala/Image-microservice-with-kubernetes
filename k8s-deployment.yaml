@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-microservice
+  labels:
+    app : image-microservice
+spec: # This spec is used to describe the behaviour of the deployment
+  selector:
+    matchLabels:
+      app: image-microservice
+  template: # Template describes the pods that will be created.
+    metadata:
+      labels:
+        app: image-microservice
+    spec: # This spec is used to describe the behaviour of the pod
+      containers:
+      - name: image-microservice
+        image: image-microservice:1.0.0
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 9098
+          protocol: TCP
+
+
+# |--- Deployments
+#         |--- Replicasets
+#                 |--- Node
+#                        |--- Pods
+#                               |--- Container  
